@@ -1,4 +1,4 @@
-package com.gorf.functional;
+package com.gorf.common.functional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
