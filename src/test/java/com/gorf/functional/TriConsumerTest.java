@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Tests for {@link TriConsumer}.
  */
-public class TriConsumerTest {
+class TriConsumerTest {
 
     /**
      * Verifies that the TriConsumer passed to {@code TriConsumer.andThen} runs after {@code TriConsumer.accept}.
      */
     @Test
-    public void andThenExecutesAfterAccept() {
+    void andThenExecutesAfterAccept() {
         List<Integer> results = new ArrayList<>();
         TriConsumer<String, String, String> first = (x, y, z) -> results.add(1);
         TriConsumer<String, String, String> second = (x, y, z) -> results.add(2);
@@ -33,9 +33,8 @@ public class TriConsumerTest {
      * Verifies that an exception is thrown if the object passed to {@code TriConsumer.andThen} is null.
      */
     @Test
-    public void throwsExceptionIfValueIsNull() {
-        List<String> list = new ArrayList<>();
-        TriConsumer<String, String, String> doIt = (a, b, c) -> list.add(a + b + c);
-        Assertions.assertThrows(NullPointerException.class, () -> doIt.andThen(null).accept("a", "b", "c"));
+    void throwsExceptionIfValueIsNull() {
+        TriConsumer<String, String, String> consumer = (a, b, c) -> fail("TriConsumer should not execute.");
+        Assertions.assertThrows(NullPointerException.class, () -> consumer.andThen(null).accept("a", "b", "c"));
     }
 }
