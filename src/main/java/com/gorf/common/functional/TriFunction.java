@@ -1,4 +1,4 @@
-package com.gorf.functional;
+package com.gorf.common.functional;
 
 import java.util.Objects;
 import java.util.function.BiFunction;
