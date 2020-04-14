@@ -25,7 +25,18 @@
     </prerequisites>
 
     <properties>
+        <!-- Checkstyle -->
+        <checkstyle.rules>build/checkstyle/checkstyle.xml</checkstyle.rules>
+        <checkstyle.version>8.29</checkstyle.version>
+        <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
+
+        <!-- Jackson -->
         <jackson.version>2.10.3</jackson.version>
+
+        <!-- Test Toggles -->
+        <skipTests>false</skipTests>
+        <skipCodeCoverage>true</skipCodeCoverage>
+        <skipCheckStyle>false</skipCheckStyle>
     </properties>
 
     <dependencies>
@@ -60,7 +71,55 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <!-- Checkstyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>checkstyle-validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>${checkstyle.rules}</configLocation>
+                            <suppressionsLocation>build/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+                            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                            <encoding>utf-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <enableRSS>false</enableRSS>
+
+                            <!-- Should Checkstyle validation run? -->
+                            <skip>${skipCheckStyle}</skip>
+                        </configuration>
+                        <goals>
+                            <!-- Generate a report -->
+                            <goal>checkstyle</goal>
+                            <!-- Fail the build if there are Checkstyle errors -->
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- Checkstyle -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${checkstyle.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
