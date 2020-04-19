@@ -9,7 +9,11 @@ import java.util.Random;
 public class WordGenerator {
 
     public void generate(List<String> syllables) {
-        System.out.println(getSyllable(syllables));
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < 3; i++) {
+            builder.append(getSyllable(syllables));
+        }
+        System.out.println(builder.toString());
     }
 
     /**
