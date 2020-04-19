@@ -56,7 +56,7 @@ if [ $CORRECT != "Y" ] && [ $CORRECT != "y" ]; then
 fi;
 
 ## Copy over template to root directory
-cp -rp build/templates/module-template $MODULE
+cp -rp module/templates/moduleTemplate $MODULE
 
 ## Rewrite module's pom
 sed "s/%%MODULE%%/${MODULE}/g; s/%%TEAMNAME%%/${TEAMNAME}/g; s/%%DESCRIPTION%%/${DESCRIPTION}/g; s/%%DEV_NAME%%/${DEVELOPERNAME}/g; s/%%DEV_EMAIL%%/${DEVELOPEREMAIL}/g; s#%%DATE%%#${DATE}#g;" < ${MODULE}/pom.template.xml > ${MODULE}/pom.xml
