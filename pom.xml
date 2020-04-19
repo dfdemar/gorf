@@ -20,6 +20,11 @@
         </developer>
     </developers>
 
+    <modules>
+        <module>test-common</module>
+        <module>word-generator</module>
+    </modules>
+
     <prerequisites>
         <maven>3.3.9</maven>
     </prerequisites>
