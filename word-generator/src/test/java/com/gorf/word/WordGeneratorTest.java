@@ -23,7 +23,7 @@ class WordGeneratorTest {
             e.printStackTrace();
         }
 
-        WordGenerator generator = new WordGenerator();
-        generator.generate(syllables);
+        WordGenerator generator = new WordGenerator().addFragments(syllables);
+        generator.generate();
     }
 }
