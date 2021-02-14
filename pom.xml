@@ -21,6 +21,7 @@
     </developers>
 
     <modules>
+        <module>gorf</module>
         <module>test-common</module>
         <module>word-generator</module>
     </modules>

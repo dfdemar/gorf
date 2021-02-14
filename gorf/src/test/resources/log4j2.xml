@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ONLY FOR TESTS -->
+<Configuration status="WARN">
+    <Appenders>
+        <!-- STDOUT/Console Logger -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{1.} [%t]: %msg%n"/>
+        </Console>
+
+        <!-- Stash things that are typically noise and not of value here -->
+        <File name="Info" fileName="target/logs/info.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <!-- Anything Hibernate related should log here -->
+        <File name="Hibernate" fileName="target/logs/hibernate.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <!-- For any kind of metrics that are logged -->
+        <File name="Metrics" fileName="target/logs/metrics.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+
+        <!-- All info level and up go to info log file -->
+        <Logger level="info" additivity="false">
+            <appender-ref ref="Info" level="info" />
+        </Logger>
+
+        <!-- Default to console -->
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
