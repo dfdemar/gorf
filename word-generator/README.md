@@ -1,8 +1,8 @@
-# test-common
+# word-generator
 
 ## Purpose of this project
 
-Test tools.
+Generates words. ¯\\\_(ツ)_/¯
 
 ## Ownership
 
