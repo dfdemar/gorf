@@ -1,6 +1,11 @@
 package com.gorf.word;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Generates random words based on English syllables and word fragments.

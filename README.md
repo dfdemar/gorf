@@ -1,3 +1,3 @@
-# Gorf
+# Gorf: Libraries for Java
 
-Helpful libraries for Java
+Coming soon...

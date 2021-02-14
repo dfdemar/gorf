@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 class WordGeneratorTest {
 
-    private static final String SYLLABLES_PATH = "D:\\David\\english_syllables.txt";
+    private static final String SYLLABLES_PATH = "src/main/resources/common-english-syllables.txt";
 
     @Test
     void testGenerate() {
