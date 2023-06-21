@@ -21,14 +21,14 @@ class NullProxyTest {
 
     @Test
     void proxyMethodWithObjectReturnTypeReturnsNull() {
-        DummyInterface dummy = NullProxy.of(DummyInterface.class);
+        TestInterface dummy = NullProxy.of(TestInterface.class);
         assertNotNull(dummy);
         assertNull(dummy.getObject());
     }
 
     @Test
     void proxyMethodWithPrimitiveReturnTypeReturnsDefaultValue() {
-        DummyInterface dummy = NullProxy.of(DummyInterface.class);
+        TestInterface dummy = NullProxy.of(TestInterface.class);
         assertNotNull(dummy);
 
         assertEquals(Integer.valueOf("0"), (Integer) dummy.getInt());
@@ -41,7 +41,7 @@ class NullProxyTest {
         assertEquals(Character.MIN_VALUE, dummy.getChar());
     }
 
-    private interface DummyInterface {
+    private interface TestInterface {
 
         Object getObject();
 
