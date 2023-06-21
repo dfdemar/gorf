@@ -23,9 +23,11 @@ class WordGeneratorTest {
             e.printStackTrace();
         }
 
-        new WordGenerator()
+        List<String> words = new WordGenerator()
             .addFragments(syllables)
             .setMaxSyllables(4)
             .generateWords();
+
+        words.forEach(System.out::println);
     }
 }

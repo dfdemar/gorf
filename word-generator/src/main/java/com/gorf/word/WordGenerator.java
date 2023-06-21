@@ -2,11 +2,14 @@ package com.gorf.word;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Generates random words based on English syllables and word fragments.
@@ -38,18 +41,22 @@ public class WordGenerator {
         return this;
     }
 
-    public void generateWords() {
-        generateWords(DEFAULT_WORD_COUNT);
+    public List<String> generateWords() {
+        return generateWords(DEFAULT_WORD_COUNT);
     }
 
-    public void generateWords(int wordCount) {
+    public List<String> generateWords(int wordCount) {
+        if (wordCount <= 0) {
+            return Collections.emptyList();
+        }
+
         fragments.clear();
         fragments.addAll(uniqueFragments);
 
-        for (int i = 0; i < wordCount; i++) {
-            String word = buildWord();
-            System.out.println(word);
-        }
+        return IntStream
+            .range(0, wordCount)
+            .mapToObj(i -> buildWord())
+            .collect(Collectors.toList());
     }
 
     /**
