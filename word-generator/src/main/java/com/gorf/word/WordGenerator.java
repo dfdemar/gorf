@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Generates random words based on English syllables and word fragments.
@@ -13,7 +14,9 @@ import java.util.Set;
 public class WordGenerator {
 
     private final Set<String> uniqueFragments = new HashSet<>();
-    private List<String> fragments = new ArrayList<>();
+    private final List<String> fragments = new ArrayList<>();
+
+    private int maxSyllables = 3;
 
     /**
      * Adds a collection of word fragments to be used for generating words. Can be chained.
@@ -23,8 +26,19 @@ public class WordGenerator {
         return this;
     }
 
+    public WordGenerator setMaxSyllables(int maxSyllables) {
+        if (maxSyllables <= 1) {
+            this.maxSyllables = 2;
+        } else {
+            this.maxSyllables = maxSyllables;
+        }
+
+        return this;
+    }
+
     public void generate() {
-        fragments = new ArrayList<>(uniqueFragments);
+        fragments.clear();
+        fragments.addAll(uniqueFragments);
 
         for (int i = 0; i < 10; i++) {
             String word = buildWord();
@@ -36,8 +50,10 @@ public class WordGenerator {
      * Builds a word using random word fragments.
      */
     private String buildWord() {
+        int syllableCount = ThreadLocalRandom.current().nextInt(2, maxSyllables + 1);
         StringBuilder builder = new StringBuilder();
-        for (int j = 0; j < 3; j++) {
+
+        for (int i = 0; i < syllableCount; i++) {
             builder.append(getRandomFragment());
         }
         return builder.toString();

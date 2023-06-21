@@ -15,7 +15,7 @@ class WordGeneratorTest {
     private static final String SYLLABLES_PATH = "src/main/resources/common-english-syllables.txt";
 
     @Test
-    void testGenerate() {
+    void generateWords() {
         List<String> syllables = new ArrayList<>();
         try (Stream<String> lines = Files.lines(Paths.get(SYLLABLES_PATH))) {
             lines.collect(Collectors.toCollection(() -> syllables));
@@ -23,7 +23,9 @@ class WordGeneratorTest {
             e.printStackTrace();
         }
 
-        WordGenerator generator = new WordGenerator().addFragments(syllables);
-        generator.generate();
+        new WordGenerator()
+            .addFragments(syllables)
+            .setMaxSyllables(4)
+            .generate();
     }
 }
