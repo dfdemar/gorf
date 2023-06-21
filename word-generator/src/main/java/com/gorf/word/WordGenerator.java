@@ -13,6 +13,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class WordGenerator {
 
+    private static final int DEFAULT_WORD_COUNT = 5;
+
     private final Set<String> uniqueFragments = new HashSet<>();
     private final List<String> fragments = new ArrayList<>();
 
@@ -36,11 +38,15 @@ public class WordGenerator {
         return this;
     }
 
-    public void generate() {
+    public void generateWords() {
+        generateWords(DEFAULT_WORD_COUNT);
+    }
+
+    public void generateWords(int wordCount) {
         fragments.clear();
         fragments.addAll(uniqueFragments);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < wordCount; i++) {
             String word = buildWord();
             System.out.println(word);
         }

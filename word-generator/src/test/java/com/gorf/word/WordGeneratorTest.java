@@ -26,6 +26,6 @@ class WordGeneratorTest {
         new WordGenerator()
             .addFragments(syllables)
             .setMaxSyllables(4)
-            .generate();
+            .generateWords();
     }
 }
