@@ -1,0 +1,4 @@
+# Top Level Settings Key
+settings:
+  setting_1: true
+  setting_2: "resources/example"

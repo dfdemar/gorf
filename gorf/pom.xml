@@ -10,12 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Module Definition & Version -->
-    <artifactId>word-generator</artifactId>
+    <artifactId>gorf</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
     <!-- Module Description and Ownership -->
-    <name>word-generator</name>
-    <description>Generates words</description>
+    <name>gorf</name>
+    <description>Gorf common</description>
     <organization>
         <name>Gorf</name>
     </organization>
