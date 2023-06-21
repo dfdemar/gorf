@@ -1,5 +1,6 @@
 package com.gorf.word;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,21 +14,34 @@ import java.util.stream.Stream;
 class WordGeneratorTest {
 
     private static final String SYLLABLES_PATH = "src/main/resources/common-english-syllables.txt";
+    private static final List<String > SYLLABLES = new ArrayList<>();
 
-    @Test
-    void generateWords() {
-        List<String> syllables = new ArrayList<>();
+    @BeforeAll
+    static void beforeAll() {
         try (Stream<String> lines = Files.lines(Paths.get(SYLLABLES_PATH))) {
-            lines.collect(Collectors.toCollection(() -> syllables));
+            lines.collect(Collectors.toCollection(() -> SYLLABLES));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    void generateWords() {
         List<String> words = new WordGenerator()
-            .addFragments(syllables)
+            .addFragments(SYLLABLES)
             .setMaxSyllables(4)
             .generateWords();
 
         words.forEach(System.out::println);
+    }
+
+    @Test
+    void generateSentences() {
+        List<String> sentences = new WordGenerator()
+            .addFragments(SYLLABLES)
+            .setMaxSyllables(4)
+            .generateSentences();
+
+        sentences.forEach(System.out::println);
     }
 }

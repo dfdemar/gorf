@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  */
 public class WordGenerator {
 
-    private static final int DEFAULT_WORD_COUNT = 5;
+    private static final int DEFAULT_RESULT_COUNT = 10;
 
     private final Set<String> uniqueFragments = new HashSet<>();
     private final List<String> fragments = new ArrayList<>();
@@ -42,7 +42,7 @@ public class WordGenerator {
     }
 
     public List<String> generateWords() {
-        return generateWords(DEFAULT_WORD_COUNT);
+        return generateWords(DEFAULT_RESULT_COUNT);
     }
 
     public List<String> generateWords(int wordCount) {
@@ -56,6 +56,26 @@ public class WordGenerator {
         return IntStream
             .range(0, wordCount)
             .mapToObj(i -> buildWord())
+            .collect(Collectors.toList());
+    }
+
+    public List<String> generateSentences() {
+        return generateSentences(DEFAULT_RESULT_COUNT);
+    }
+
+    public List<String> generateSentences(int sentenceCount) {
+        if (sentenceCount <= 0) {
+            return Collections.emptyList();
+        }
+
+        int minWords = 3;
+        int maxWords = 6;
+
+        return IntStream
+            .range(0, sentenceCount)
+            .map(i -> ThreadLocalRandom.current().nextInt(minWords, maxWords + 1))
+            .mapToObj(this::generateWords)
+            .map(words -> String.join(" ", words))
             .collect(Collectors.toList());
     }
 
